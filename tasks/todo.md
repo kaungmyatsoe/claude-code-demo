@@ -6,6 +6,7 @@
 - [x] Build hero section (headline, CTAs, placeholder image)
 - [x] Build stats bar (3 key numbers)
 - [x] Build courses grid (3 cards with placeholder images)
+- [x] create styles.css with modern agency aesthetics (extracted from index.html into standalone file)
 - [x] Build feature / why-us section (2-col layout)
 - [x] Build testimonial band (dark, full-width pull quote)
 - [x] Build newsletter CTA section
