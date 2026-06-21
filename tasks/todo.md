@@ -14,6 +14,13 @@
 - [x] Add mobile responsive media queries
 - [x] Add scroll-based nav JS behavior
 
+## UI Redesign — Inspired by Codecademy screenshot
+- [x] Hero: change to full-width image background with text overlaid on top
+- [x] Add trust/logos bar below hero ("Trusted by learners at...")
+- [x] Add topics grid section — "Build skills that stand out" with icon tiles
+- [x] Tighten up nav (cleaner, less spacing)
+- [x] Update CTA button style to be more prominent
+
 ## Review
 Single file `index.html` created with embedded CSS and JS (no build step, no dependencies).
 
