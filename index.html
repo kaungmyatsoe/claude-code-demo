@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fix #14: meta description -->
+  <meta name="description" content="AIEDU — structured AI courses, real-world projects, and expert mentors. Go from curious to confident in machine learning, prompt engineering, and AI agents." />
   <title>AIEDU — Learn AI. Build the Future.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,16 +14,22 @@
 <body>
 
   <!-- ── Navigation ── -->
-  <nav id="main-nav">
+  <!-- Fix #4: aria-label="Main" on nav -->
+  <nav id="main-nav" aria-label="Main">
     <div class="container">
       <div class="nav-inner">
         <a href="#" class="nav-logo">AI<span>EDU</span></a>
-        <ul class="nav-links">
+        <!-- Fix #15: role="list" on ul -->
+        <ul class="nav-links" role="list" id="nav-links-list">
           <li><a href="#courses">Courses</a></li>
           <li><a href="#features">Why Us</a></li>
           <li><a href="#newsletter">Community</a></li>
           <li><a href="#courses" class="btn-nav">Get Started</a></li>
         </ul>
+        <!-- Fix #3: hamburger button for mobile -->
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-list">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -37,11 +45,13 @@
           <h1>Learn&nbsp;AI.<br /><em>Build the Future.</em></h1>
           <p>Structured courses, real-world projects, and expert mentors — everything you need to go from curious to confident in artificial intelligence.</p>
           <div class="hero-cta">
-            <a href="#courses" class="btn btn-primary">Start learning free &nbsp;→</a>
+            <!-- Fix #16: removed &nbsp; (btn already has gap: 8px) -->
+            <a href="#courses" class="btn btn-primary">Start learning free →</a>
             <a href="#features" class="btn btn-ghost">How it works</a>
           </div>
           <div class="hero-social-proof">
-            <div class="hero-avatars">
+            <!-- Fix #2: role="img" wrapper with aria-label for avatar group -->
+            <div class="hero-avatars" role="img" aria-label="Learner avatars">
               <img src="https://placehold.co/32x32/7C3AED/fff?text=A" alt="" />
               <img src="https://placehold.co/32x32/a78bfa/fff?text=B" alt="" />
               <img src="https://placehold.co/32x32/5b21b6/fff?text=C" alt="" />
@@ -57,7 +67,8 @@
   </section>
 
   <!-- ── Trust bar ── -->
-  <section class="trust">
+  <!-- Fix #7: aria-label on section -->
+  <section class="trust" aria-label="Trusted companies">
     <div class="container">
       <p class="trust-label">Trusted by learners at</p>
       <div class="trust-logos">
@@ -72,7 +83,8 @@
   </section>
 
   <!-- ── Stats ── -->
-  <section class="stats">
+  <!-- Fix #7: aria-label on section -->
+  <section class="stats" aria-label="Platform statistics">
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item">
@@ -98,19 +110,20 @@
         <p class="section-label">What you'll learn</p>
         <h2>Build skills that stand out</h2>
       </div>
+      <!-- Fix #11: role="button" + tabindex="0" on topic tiles -->
       <div class="topics-grid">
-        <div class="topic-tile"><span class="topic-icon">🤖</span><span>Machine Learning</span></div>
-        <div class="topic-tile"><span class="topic-icon">💬</span><span>Prompt Engineering</span></div>
-        <div class="topic-tile"><span class="topic-icon">🧠</span><span>Deep Learning</span></div>
-        <div class="topic-tile"><span class="topic-icon">🐍</span><span>Python for AI</span></div>
-        <div class="topic-tile"><span class="topic-icon">📊</span><span>Data Science</span></div>
-        <div class="topic-tile"><span class="topic-icon">🔍</span><span>RAG &amp; Search</span></div>
-        <div class="topic-tile"><span class="topic-icon">⚡</span><span>AI Agents</span></div>
-        <div class="topic-tile"><span class="topic-icon">🛡️</span><span>AI Safety</span></div>
-        <div class="topic-tile"><span class="topic-icon">🎨</span><span>Generative AI</span></div>
-        <div class="topic-tile"><span class="topic-icon">📈</span><span>MLOps</span></div>
-        <div class="topic-tile"><span class="topic-icon">🔗</span><span>LangChain</span></div>
-        <div class="topic-tile"><span class="topic-icon">☁️</span><span>Cloud AI</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🤖</span><span>Machine Learning</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">💬</span><span>Prompt Engineering</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🧠</span><span>Deep Learning</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🐍</span><span>Python for AI</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">📊</span><span>Data Science</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🔍</span><span>RAG &amp; Search</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">⚡</span><span>AI Agents</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🛡️</span><span>AI Safety</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🎨</span><span>Generative AI</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">📈</span><span>MLOps</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">🔗</span><span>LangChain</span></div>
+        <div class="topic-tile" role="button" tabindex="0"><span class="topic-icon">☁️</span><span>Cloud AI</span></div>
       </div>
     </div>
   </section>
@@ -123,7 +136,8 @@
           <p class="section-label">Curriculum</p>
           <h2>Explore Courses</h2>
         </div>
-        <a href="#">View all courses →</a>
+        <!-- Fix #10: href="#" → #courses -->
+        <a href="#courses">View all courses →</a>
       </div>
       <div class="courses-grid">
 
@@ -139,10 +153,10 @@
             <p>Master the core concepts behind modern ML — from regression to neural nets — with hands-on Python exercises.</p>
             <div class="course-footer">
               <div class="course-instructor">
-                <img src="https://placehold.co/30x30/1e1e1e/888?text=JS" alt="Instructor" />
+                <img src="https://placehold.co/30x30/1e1e1e/888?text=JS" alt="Instructor Jordan Sato" />
                 <span>Jordan Sato</span>
               </div>
-              <a href="#" class="enroll-link">Enroll →</a>
+              <a href="#courses" class="enroll-link">Enroll →</a>
             </div>
           </div>
         </div>
@@ -159,10 +173,10 @@
             <p>Learn to design precise prompts, chain reasoning steps, and unlock the full potential of large language models.</p>
             <div class="course-footer">
               <div class="course-instructor">
-                <img src="https://placehold.co/30x30/1e1e1e/888?text=ML" alt="Instructor" />
+                <img src="https://placehold.co/30x30/1e1e1e/888?text=ML" alt="Instructor Maya Leung" />
                 <span>Maya Leung</span>
               </div>
-              <a href="#" class="enroll-link">Enroll →</a>
+              <a href="#courses" class="enroll-link">Enroll →</a>
             </div>
           </div>
         </div>
@@ -179,10 +193,10 @@
             <p>Design autonomous agents that plan, use tools, and complete complex multi-step tasks in the real world.</p>
             <div class="course-footer">
               <div class="course-instructor">
-                <img src="https://placehold.co/30x30/1e1e1e/888?text=TK" alt="Instructor" />
+                <img src="https://placehold.co/30x30/1e1e1e/888?text=TK" alt="Instructor Theo Kim" />
                 <span>Theo Kim</span>
               </div>
-              <a href="#" class="enroll-link">Enroll →</a>
+              <a href="#courses" class="enroll-link">Enroll →</a>
             </div>
           </div>
         </div>
@@ -207,23 +221,24 @@
           <p>We obsess over curriculum quality and outcomes. Every course is built by practitioners who work with AI every day.</p>
           <div class="feature-list">
             <div class="feature-item">
-              <div class="feature-icon">🧠</div>
+              <div class="feature-icon" aria-hidden="true">🧠</div>
               <div>
-                <h4>Curriculum by Practitioners</h4>
+                <!-- Fix #8: h4 → h3 to fix heading level skip -->
+                <h3>Curriculum by Practitioners</h3>
                 <p>Courses designed by engineers and researchers actively building AI systems at leading labs and startups.</p>
               </div>
             </div>
             <div class="feature-item">
-              <div class="feature-icon">⚡</div>
+              <div class="feature-icon" aria-hidden="true">⚡</div>
               <div>
-                <h4>Learn at Your Own Pace</h4>
+                <h3>Learn at Your Own Pace</h3>
                 <p>Lifetime access to all course materials. Pick up where you left off, on any device, any time.</p>
               </div>
             </div>
             <div class="feature-item">
-              <div class="feature-icon">🛠️</div>
+              <div class="feature-icon" aria-hidden="true">🛠️</div>
               <div>
-                <h4>Real Projects, Real Skills</h4>
+                <h3>Real Projects, Real Skills</h3>
                 <p>Every module ends with a capstone project you can add to your portfolio and show to employers.</p>
               </div>
             </div>
@@ -234,17 +249,20 @@
   </section>
 
   <!-- ── Testimonial ── -->
-  <section class="testimonial">
-    <blockquote>
-      <p>AIEDU is the only platform that made me feel like I was learning from someone who actually ships AI products. The projects are real, the feedback is direct, and the curriculum is ahead of everything else out there.</p>
-      <div class="testimonial-author">
+  <!-- Fix #6: blockquote → figure/figcaption; attribution outside quoted content -->
+  <section class="testimonial" aria-label="Student testimonial">
+    <figure class="testimonial-figure">
+      <blockquote>
+        <p>AIEDU is the only platform that made me feel like I was learning from someone who actually ships AI products. The projects are real, the feedback is direct, and the curriculum is ahead of everything else out there.</p>
+      </blockquote>
+      <figcaption class="testimonial-author">
         <img src="https://placehold.co/48x48/1e1e1e/888?text=AR" alt="Aisha Rahman" />
         <div class="testimonial-author-info">
           <strong>Aisha Rahman</strong>
           <span>ML Engineer · Stripe</span>
         </div>
-      </div>
-    </blockquote>
+      </figcaption>
+    </figure>
   </section>
 
   <!-- ── Newsletter ── -->
@@ -253,8 +271,10 @@
       <p class="section-label">Stay in the loop</p>
       <h2>The AI field moves fast.<br />So do we.</h2>
       <p>Weekly insights on AI research, tools, and course releases — no noise, just signal.</p>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="your@email.com" />
+      <!-- Fix #1 & #5: accessible label + JS handler replaces inline onsubmit -->
+      <form class="newsletter-form" id="newsletter-form">
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input type="email" id="newsletter-email" placeholder="your@email.com" autocomplete="email" />
         <button type="submit" class="btn btn-primary">Subscribe</button>
       </form>
     </div>
@@ -265,22 +285,41 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-logo">AI<span>EDU</span></div>
-        <ul class="footer-links">
-          <li><a href="#">Courses</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
+        <!-- Fix #15: role="list"; Fix #10: href="#" → real fragments -->
+        <ul class="footer-links" role="list">
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#features">About</a></li>
+          <li><a href="#newsletter">Blog</a></li>
+          <li><a href="#newsletter">Contact</a></li>
         </ul>
         <p class="footer-copy">© 2026 AIEDU. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ── Scroll nav JS ── -->
   <script>
+    // Scroll nav
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fix #3: hamburger toggle
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navList = document.getElementById('nav-links-list');
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      hamburger.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
+      navList.classList.toggle('is-open');
+    });
+
+    // Fix #5: newsletter form confirmation
+    document.getElementById('newsletter-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      if (!email) return;
+      e.currentTarget.innerHTML = '<p class="newsletter-success">You\'re on the list! We\'ll be in touch.</p>';
     });
   </script>
 

@@ -15,7 +15,10 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* Fix #13: guard smooth scroll behind prefers-reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 body {
   background: var(--bg);
   color: var(--text);
@@ -30,6 +33,18 @@ ul { list-style: none; }
 
 /* ── Utilities ── */
 .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+
+/* Fix #1: visually hidden label utility */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .tag {
   display: inline-block;
   font-size: 11px;
@@ -99,6 +114,28 @@ nav.scrolled {
   transition: opacity .2s;
 }
 .nav-links .btn-nav:hover { opacity: .85; }
+
+/* Fix #3: hamburger button — hidden on desktop, visible on mobile */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .2s, opacity .2s;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── Buttons ── */
 .btn {
@@ -174,6 +211,7 @@ nav.scrolled {
 }
 .hero h1 em {
   font-style: normal;
+  color: var(--accent-light); /* Fix #12: fallback for browsers without background-clip:text */
   background: linear-gradient(90deg, var(--accent-light), #c4b5fd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -438,7 +476,8 @@ nav.scrolled {
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
 }
-.feature-item h4 {
+/* Fix #8: was h4, changed to h3 to fix heading level skip (h2 → h4) */
+.feature-item h3 {
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 700;
@@ -454,7 +493,9 @@ nav.scrolled {
   padding: var(--section-pad) 24px;
   text-align: center;
 }
-.testimonial blockquote { max-width: 680px; margin: 0 auto; }
+/* Fix #6: figure/figcaption structure */
+.testimonial-figure { max-width: 680px; margin: 0 auto; }
+.testimonial blockquote { margin: 0; }
 .testimonial blockquote p {
   font-family: var(--font-display);
   font-size: clamp(18px, 2.2vw, 26px);
@@ -497,11 +538,22 @@ nav.scrolled {
   padding: 13px 20px;
   border-radius: 8px;
   width: 280px;
-  outline: none;
-  transition: border-color .2s;
+  outline: 2px solid transparent; /* Fix #9: replaced outline:none with transparent outline */
+  outline-offset: 2px;
+  transition: border-color .2s, outline-color .2s;
 }
 .newsletter-form input[type="email"]::placeholder { color: var(--muted); }
-.newsletter-form input[type="email"]:focus { border-color: var(--accent); }
+/* Fix #9: visible focus ring for keyboard users */
+.newsletter-form input[type="email"]:focus {
+  border-color: var(--accent);
+  outline-color: var(--accent);
+}
+/* Fix #5: newsletter success message */
+.newsletter-success {
+  font-size: 15px;
+  color: var(--accent-light);
+  padding: 13px 0;
+}
 
 /* ── Footer ── */
 footer {
@@ -538,9 +590,36 @@ footer {
   .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 0; }
   .stat-item:last-child { border-bottom: none; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .nav-links a:not(.btn-nav) { display: none; }
   .topics-grid { grid-template-columns: repeat(3, 1fr); }
   .trust-logos { gap: 28px; }
+
+  /* Fix #3: show hamburger, hide text nav links, show them when open */
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background: rgba(10,10,10,.97);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links .btn-nav {
+    background: none;
+    border-radius: 0;
+    color: var(--accent-light);
+    padding: 14px 24px;
+  }
 }
 @media (max-width: 560px) {
   .courses-grid { grid-template-columns: 1fr; }
